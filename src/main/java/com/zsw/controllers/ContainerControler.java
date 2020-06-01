@@ -45,6 +45,12 @@ public class ContainerControler  extends BaseController {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
 
+            String check =this.containerService.checkContainerExist(containerEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
+
             this.containerService.newContainer(containerEntity,currentUserId);
 
             responseJson.setCode(ResponseCode.Code_200);
@@ -66,6 +72,12 @@ public class ContainerControler  extends BaseController {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
+
+            String check =this.containerService.checkContainerExist(containerEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
 
             this.containerService.updateContainer(containerEntity,currentUserId);
 

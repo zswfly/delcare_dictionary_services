@@ -47,6 +47,13 @@ public class CrmObjectControler extends BaseController {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
 
+            String check =this.crmObjectService.checkCrmObjectExist(crmObjectEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
+
+
             this.crmObjectService.newCrmObject(crmObjectEntity,currentUserId);
 
             responseJson.setCode(ResponseCode.Code_200);
@@ -68,6 +75,13 @@ public class CrmObjectControler extends BaseController {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
+
+            String check =this.crmObjectService.checkCrmObjectExist(crmObjectEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
+
 
             this.crmObjectService.updateCrmObject(crmObjectEntity,currentUserId);
 

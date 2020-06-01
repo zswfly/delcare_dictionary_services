@@ -47,6 +47,13 @@ public class GoodsControler extends BaseController {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
 
+            String check =this.goodsService.checkGoodsExist(goodsEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
+
+
             this.goodsService.newGoods(goodsEntity,currentUserId);
 
             responseJson.setCode(ResponseCode.Code_200);
@@ -68,6 +75,12 @@ public class GoodsControler extends BaseController {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = new Gson();
+
+            String check =this.goodsService.checkGoodsExist(goodsEntity);
+            if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
+                responseJson.setCode(ResponseCode.Code_Bussiness_Error);
+                responseJson.setMessage(check);
+            }
 
             this.goodsService.updateGoods(goodsEntity,currentUserId);
 
