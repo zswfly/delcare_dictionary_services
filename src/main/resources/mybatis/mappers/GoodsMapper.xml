@@ -12,4 +12,75 @@
     <result column="update_user" property="updateUser" jdbcType="INTEGER" />
   </resultMap>
 
+  <select id="listGoodsEntity" resultMap="BaseResultMap">
+
+    SELECT g.*
+    FROM goods g
+
+    <if test="paramMap.containerName != null and paramMap.containerName != ''">
+      AND g.`name` LIKE '%${paramMap.containerName}%'
+    </if>
+    <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
+      AND g.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      AND g.`status` = #{paramMap.status}
+    </if>
+    <if test="paramMap.beginCreateTime !=null">
+      AND g.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND g.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+
+    GROUP BY g.id
+
+    <if test="paramMap.start !=null and paramMap.start >= 0
+         and paramMap.pageSize !=null and paramMap.pageSize > 0">
+      LIMIT ${paramMap.start} , ${paramMap.pageSize}
+    </if>
+  </select>
+
+  <select id="listGoodsEntityCount" resultType="Integer">
+
+    SELECT
+    COUNT(DISTINCT g.id)
+    FROM goods g
+    <if test="paramMap.containerName != null and paramMap.containerName != ''">
+      AND g.`name` LIKE '%${paramMap.containerName}%'
+    </if>
+    <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
+      AND g.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      AND g.`status` = #{paramMap.status}
+    </if>
+    <if test="paramMap.beginCreateTime !=null">
+      AND g.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND g.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+  </select>
+
+  <update id="batchBan" parameterType="Map">
+
+    UPDATE goods g
+    SET g.update_time = CURRENT_DATE
+    <if test="paramMap.currentUserId != null and paramMap.currentUserId >= 0">
+      , g.update_user = '${paramMap.currentUserId}'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      , g.`status`  = #{paramMap.status}
+    </if>
+
+    WHERE 1 = 1
+    <if test="paramMap.ids !=null ">
+      AND g.id IN
+      <foreach item="item" collection="paramMap.ids" separator="," open="(" close=")" index="">
+        #{item, jdbcType=NUMERIC}
+      </foreach>
+    </if>
+
+  </update>
 </mapper>

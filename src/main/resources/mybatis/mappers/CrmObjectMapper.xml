@@ -11,5 +11,75 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_user" property="updateUser" jdbcType="INTEGER" />
   </resultMap>
+  <select id="listCrmObjectEntity" resultMap="BaseResultMap">
 
+    SELECT c.*
+    FROM crm_object c
+
+    <if test="paramMap.containerName != null and paramMap.containerName != ''">
+      AND c.`name` LIKE '%${paramMap.containerName}%'
+    </if>
+    <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
+      AND c.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      AND c.`status` = #{paramMap.status}
+    </if>
+    <if test="paramMap.beginCreateTime !=null">
+      AND c.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND c.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+
+    GROUP BY c.id
+
+    <if test="paramMap.start !=null and paramMap.start >= 0
+         and paramMap.pageSize !=null and paramMap.pageSize > 0">
+      LIMIT ${paramMap.start} , ${paramMap.pageSize}
+    </if>
+  </select>
+
+  <select id="listCrmObjectEntityCount" resultType="Integer">
+
+    SELECT
+    COUNT(DISTINCT c.id)
+    FROM crm_object c
+    <if test="paramMap.containerName != null and paramMap.containerName != ''">
+      AND c.`name` LIKE '%${paramMap.containerName}%'
+    </if>
+    <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
+      AND c.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      AND c.`status` = #{paramMap.status}
+    </if>
+    <if test="paramMap.beginCreateTime !=null">
+      AND c.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND c.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+  </select>
+
+  <update id="batchBan" parameterType="Map">
+
+    UPDATE crm_object c
+    SET c.update_time = CURRENT_DATE
+    <if test="paramMap.currentUserId != null and paramMap.currentUserId >= 0">
+      , c.update_user = '${paramMap.currentUserId}'
+    </if>
+    <if test="paramMap.status != null and paramMap.status >= 0">
+      , c.`status`  = #{paramMap.status}
+    </if>
+
+    WHERE 1 = 1
+    <if test="paramMap.ids !=null ">
+      AND c.id IN
+      <foreach item="item" collection="paramMap.ids" separator="," open="(" close=")" index="">
+        #{item, jdbcType=NUMERIC}
+      </foreach>
+    </if>
+
+  </update>
 </mapper>
