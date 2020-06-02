@@ -99,13 +99,16 @@ public class ContainerServiceImpl implements IContainerService,Serializable {
 
         }else{
             ContainerEntity param = new ContainerEntity();
-            ContainerEntity result = null;
-
+            List<ContainerEntity> resultList = null;
             param.setName(containerEntity.getName());
-            result = this.dbService.get(param);
-            if( result != null && result.getId() != containerEntity.getId() )
-                stringBuilder.append("集装箱名已存在");
-
+            resultList = this.dbService.find(param);
+            for(ContainerEntity result :resultList){
+                result = this.dbService.get(param);
+                if( result != null && result.getId() != containerEntity.getId() ) {
+                    stringBuilder.append("集装箱名已存在");
+                    break;
+                }
+            }
         }
 
         return stringBuilder.toString();

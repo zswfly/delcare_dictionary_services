@@ -100,12 +100,17 @@ public class CostServiceImpl implements ICostService,Serializable {
 
         }else{
             CostEntity param = new CostEntity();
-            CostEntity result = null;
-
+            List<CostEntity> resultList = null;
             param.setName(costEntity.getName());
-            result = this.dbService.get(param);
-            if( result != null && result.getId() != costEntity.getId() )
-                stringBuilder.append("费用类型名已存在");
+            resultList = this.dbService.find(param);
+            for(CostEntity result :resultList){
+                result = this.dbService.get(param);
+                if( result != null && result.getId() != costEntity.getId() ) {
+                    stringBuilder.append("费用类型名已存在");
+                    break;
+                }
+            }
+
 
         }
 

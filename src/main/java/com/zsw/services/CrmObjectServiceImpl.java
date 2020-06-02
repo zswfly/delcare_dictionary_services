@@ -1,6 +1,7 @@
 package com.zsw.services;
 
 import com.zsw.daos.CrmObjectMapper;
+import com.zsw.entitys.CostEntity;
 import com.zsw.entitys.CrmObjectEntity;
 import com.zsw.utils.CommonStaticWord;
 import com.zsw.utils.PinyinUtils;
@@ -100,13 +101,16 @@ public class CrmObjectServiceImpl implements ICrmObjectService,Serializable {
 
         }else{
             CrmObjectEntity param = new CrmObjectEntity();
-            CrmObjectEntity result = null;
-
+            List<CrmObjectEntity> resultList = null;
             param.setName(crmObjectEntity.getName());
-            result = this.dbService.get(param);
-            if( result != null && result.getId() != crmObjectEntity.getId() )
-                stringBuilder.append("crm对象名已存在");
-
+            resultList = this.dbService.find(param);
+            for(CrmObjectEntity result :resultList){
+                result = this.dbService.get(param);
+                if( result != null && result.getId() != crmObjectEntity.getId() ) {
+                    stringBuilder.append("crm对象名已存在");
+                    break;
+                }
+            }
         }
 
         return stringBuilder.toString();

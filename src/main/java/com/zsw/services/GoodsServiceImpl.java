@@ -1,6 +1,7 @@
 package com.zsw.services;
 
 import com.zsw.daos.GoodsMapper;
+import com.zsw.entitys.CrmObjectEntity;
 import com.zsw.entitys.GoodsEntity;
 import com.zsw.utils.CommonStaticWord;
 import com.zsw.utils.PinyinUtils;
@@ -101,12 +102,16 @@ public class GoodsServiceImpl implements IGoodsService,Serializable {
 
         }else{
             GoodsEntity param = new GoodsEntity();
-            GoodsEntity result = null;
-
+            List<GoodsEntity> resultList = null;
             param.setName(goodsEntity.getName());
-            result = this.dbService.get(param);
-            if( result != null && result.getId() != goodsEntity.getId() )
-                stringBuilder.append("货物名已存在");
+            resultList = this.dbService.find(param);
+            for(GoodsEntity result :resultList){
+                result = this.dbService.get(param);
+                if( result != null && result.getId() != goodsEntity.getId() ) {
+                    stringBuilder.append("crm对象名已存在");
+                    break;
+                }
+            }
 
         }
 
