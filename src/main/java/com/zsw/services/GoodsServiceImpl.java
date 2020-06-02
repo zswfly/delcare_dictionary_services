@@ -57,7 +57,7 @@ public class GoodsServiceImpl implements IGoodsService,Serializable {
 
         GoodsEntity result = this.dbService.get(GoodsEntity.class,goodsEntity.getId());
 
-        if(result == null) throw new Exception("没有该用户id");
+        if(result == null) throw new Exception("没有该货物id");
 
         BeanUtils.copyProperties(goodsEntity,result);
 
@@ -97,7 +97,7 @@ public class GoodsServiceImpl implements IGoodsService,Serializable {
 
             param.setName(goodsEntity.getName());
             if( this.dbService.get(param) != null
-                    ) stringBuilder.append("集装箱名已存在");
+                    ) stringBuilder.append("货物名已存在");
 
         }else{
             GoodsEntity param = new GoodsEntity();
@@ -106,7 +106,7 @@ public class GoodsServiceImpl implements IGoodsService,Serializable {
             param.setName(goodsEntity.getName());
             result = this.dbService.get(param);
             if( result != null && result.getId() != goodsEntity.getId() )
-                stringBuilder.append("集装箱名已存在");
+                stringBuilder.append("货物名已存在");
 
         }
 

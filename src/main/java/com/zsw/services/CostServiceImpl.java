@@ -56,7 +56,7 @@ public class CostServiceImpl implements ICostService,Serializable {
 
         CostEntity result = this.dbService.get(CostEntity.class,costEntity.getId());
 
-        if(result == null) throw new Exception("没有该用户id");
+        if(result == null) throw new Exception("没有该费用类型id");
 
         BeanUtils.copyProperties(costEntity,result);
 
@@ -96,7 +96,7 @@ public class CostServiceImpl implements ICostService,Serializable {
 
             param.setName(costEntity.getName());
             if( this.dbService.get(param) != null
-                    ) stringBuilder.append("集装箱名已存在");
+                    ) stringBuilder.append("费用类型名已存在");
 
         }else{
             CostEntity param = new CostEntity();
@@ -105,7 +105,7 @@ public class CostServiceImpl implements ICostService,Serializable {
             param.setName(costEntity.getName());
             result = this.dbService.get(param);
             if( result != null && result.getId() != costEntity.getId() )
-                stringBuilder.append("集装箱名已存在");
+                stringBuilder.append("费用类型名已存在");
 
         }
 

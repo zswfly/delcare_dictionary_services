@@ -56,7 +56,7 @@ public class CrmObjectServiceImpl implements ICrmObjectService,Serializable {
 
         CrmObjectEntity result = this.dbService.get(CrmObjectEntity.class,crmObjectEntity.getId());
 
-        if(result == null) throw new Exception("没有该用户id");
+        if(result == null) throw new Exception("没有该crm对象id");
 
         BeanUtils.copyProperties(crmObjectEntity,result);
 
@@ -96,7 +96,7 @@ public class CrmObjectServiceImpl implements ICrmObjectService,Serializable {
 
             param.setName(crmObjectEntity.getName());
             if( this.dbService.get(param) != null
-                    ) stringBuilder.append("集装箱名已存在");
+                    ) stringBuilder.append("crm对象名已存在");
 
         }else{
             CrmObjectEntity param = new CrmObjectEntity();
@@ -105,7 +105,7 @@ public class CrmObjectServiceImpl implements ICrmObjectService,Serializable {
             param.setName(crmObjectEntity.getName());
             result = this.dbService.get(param);
             if( result != null && result.getId() != crmObjectEntity.getId() )
-                stringBuilder.append("集装箱名已存在");
+                stringBuilder.append("crm对象名已存在");
 
         }
 

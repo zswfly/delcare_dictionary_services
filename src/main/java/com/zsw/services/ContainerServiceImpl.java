@@ -55,7 +55,7 @@ public class ContainerServiceImpl implements IContainerService,Serializable {
 
         ContainerEntity result = this.dbService.get(ContainerEntity.class,containerEntity.getId());
 
-        if(result == null) throw new Exception("没有该用户id");
+        if(result == null) throw new Exception("没有该集装箱id");
 
         BeanUtils.copyProperties(containerEntity,result);
 
