@@ -112,7 +112,7 @@ public class GoodsControler extends BaseController {
             goodsEntity = this.goodsService.getGoods(goodsEntity);
             if(goodsEntity == null){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
-                responseJson.setMessage("该id没公司");
+                responseJson.setMessage("该id没货物类型");
             }else{
                 responseJson.setCode(ResponseCode.Code_200);
                 responseJson.setData(goodsEntity);

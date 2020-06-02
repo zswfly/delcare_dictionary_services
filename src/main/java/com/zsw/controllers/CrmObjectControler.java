@@ -113,7 +113,7 @@ public class CrmObjectControler extends BaseController {
             crmObjectEntity = this.crmObjectService.getCrmObject(crmObjectEntity);
             if(crmObjectEntity == null){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
-                responseJson.setMessage("该id没公司");
+                responseJson.setMessage("该id没客户对象类型");
             }else{
                 responseJson.setCode(ResponseCode.Code_200);
                 responseJson.setData(crmObjectEntity);

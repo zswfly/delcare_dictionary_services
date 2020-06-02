@@ -109,7 +109,7 @@ public class ContainerControler  extends BaseController {
             containerEntity = this.containerService.getContainer(containerEntity);
             if(containerEntity == null){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
-                responseJson.setMessage("该id没公司");
+                responseJson.setMessage("该id没集装箱类型");
             }else{
                 responseJson.setCode(ResponseCode.Code_200);
                 responseJson.setData(containerEntity);
