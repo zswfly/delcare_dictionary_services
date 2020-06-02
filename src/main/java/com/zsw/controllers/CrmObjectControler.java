@@ -40,7 +40,7 @@ public class CrmObjectControler extends BaseController {
 
     @RequestMapping(value= DictionaryStaticURLUtil.crmObjectControler_newCrmObject,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.crmObjectControler.newCompany",name = "新增公司",description ="新增公司"
+    //    @Permission(code = "dectionary.crmObjectControler.newCrmObject",name = "新增CRM对象",description ="新增CRM对象"
 //            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_newCrmObject)
     public String newCrmObject(CrmObjectEntity crmObjectEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
@@ -69,8 +69,8 @@ public class CrmObjectControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_updateCrmObject,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.crmObjectControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_newCrmObject)
+    //    @Permission(code = "dectionary.crmObjectControler.updateCrmObject",name = "更新CRM对象",description ="更新CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_updateCrmObject)
     public String updateCrmObject(CrmObjectEntity crmObjectEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -100,6 +100,8 @@ public class CrmObjectControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_getCrmObject+"/{crmObjectId}",
             method= RequestMethod.GET)
+    //    @Permission(code = "dectionary.crmObjectControler.getCrmObject",name = "获取单个CRM对象",description ="获取单个CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_getCrmObject)
     public String getCrmObject(@PathVariable Integer crmObjectId) throws Exception {
         try {
 
@@ -126,8 +128,8 @@ public class CrmObjectControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_crmObjectPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.crmObjectControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_newCrmObject)
+    //    @Permission(code = "dectionary.crmObjectControler.crmObjectPage",name = "搜索CRM对象",description ="搜索CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_crmObjectPage)
     public String crmObjectPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -182,8 +184,8 @@ public class CrmObjectControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "user.userController.batchBan",name = "批量禁用/恢复",description ="批量禁用/恢复用户"
-    //    ,url=CommonStaticWord.userServices + UserStaticURLUtil.userController + UserStaticURLUtil.userController_batchBan)
+    //@Permission(code = "dectionary.crmObjectControler.batchBan",name = "批量禁用/恢复CRM对象",description ="批量禁用/恢复CRM对象"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + UserStaticURLUtil.crmObjectControler_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();

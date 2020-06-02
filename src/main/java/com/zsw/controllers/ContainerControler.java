@@ -38,7 +38,7 @@ public class ContainerControler  extends BaseController {
 
     @RequestMapping(value= DictionaryStaticURLUtil.containerControler_newContainer,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.containerControler.newCompany",name = "新增公司",description ="新增公司"
+    //    @Permission(code = "dectionary.containerControler.newContainer",name = "新增集装箱",description ="新增集装箱"
 //            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_newContainer)
     public String newContainer(ContainerEntity containerEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
@@ -66,8 +66,8 @@ public class ContainerControler  extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.containerControler_updateContainer,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.containerControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_newContainer)
+    //    @Permission(code = "dectionary.containerControler.updateContainer",name = "更新集装箱",description ="更新集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_updateContainer)
     public String updateContainer(ContainerEntity containerEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -96,7 +96,9 @@ public class ContainerControler  extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.containerControler_getContainer+"/{containerId}",
             method= RequestMethod.GET)
- public String getContainer(@PathVariable Integer containerId) throws Exception {
+    //    @Permission(code = "dectionary.containerControler.getContainer",name = "获取单个集装箱",description ="获取单个集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_getContainer)
+    public String getContainer(@PathVariable Integer containerId) throws Exception {
         try {
 
             ResponseJson responseJson = new ResponseJson();
@@ -122,8 +124,8 @@ public class ContainerControler  extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.containerControler_containerPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.containerControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_newContainer)
+    //    @Permission(code = "dectionary.containerControler.containerPage",name = "搜索集装箱",description ="搜索集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_containerPage)
     public String containerPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -178,8 +180,8 @@ public class ContainerControler  extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.containerControler_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "user.userController.batchBan",name = "批量禁用/恢复",description ="批量禁用/恢复用户"
-    //    ,url=CommonStaticWord.userServices + UserStaticURLUtil.userController + UserStaticURLUtil.userController_batchBan)
+    //@Permission(code = "dectionary.containerControler.batchBan",name = "批量禁用/恢复集装箱",description ="批量禁用/恢复集装箱"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + UserStaticURLUtil.containerControler_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();

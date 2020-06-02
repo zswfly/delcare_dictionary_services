@@ -40,7 +40,7 @@ public class CostControler extends BaseController {
 
     @RequestMapping(value= DictionaryStaticURLUtil.costControler_newCost,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.costControler.newCompany",name = "新增公司",description ="新增公司"
+    //    @Permission(code = "dectionary.costControler.newCost",name = "新增费用",description ="新增费用"
 //            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_newCost)
     public String newCost(CostEntity costEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
@@ -69,8 +69,8 @@ public class CostControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.costControler_updateCost,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.costControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_newCost)
+    //    @Permission(code = "dectionary.costControler.updateCost",name = "更新费用",description ="更新费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_updateCost)
     public String updateCost(CostEntity costEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -100,6 +100,8 @@ public class CostControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.costControler_getCost+"/{costId}",
             method= RequestMethod.GET)
+    //    @Permission(code = "dectionary.costControler.getCost",name = "获取单个费用",description ="获取单个费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_getCost)
     public String getCost(@PathVariable Integer costId) throws Exception {
         try {
 
@@ -126,8 +128,8 @@ public class CostControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.costControler_costPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.costControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_newCost)
+    //    @Permission(code = "dectionary.costControler.costPage",name = "搜索费用",description ="搜索费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + DictionaryStaticURLUtil.costControler_costPage)
     public String costPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -182,8 +184,8 @@ public class CostControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.costControler_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "user.userController.batchBan",name = "批量禁用/恢复",description ="批量禁用/恢复用户"
-    //    ,url=CommonStaticWord.userServices + UserStaticURLUtil.userController + UserStaticURLUtil.userController_batchBan)
+    //@Permission(code = "dectionary.costControler.batchBan",name = "批量禁用/恢复费用",description ="批量禁用/恢复费用"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costControler + UserStaticURLUtil.costControler_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();

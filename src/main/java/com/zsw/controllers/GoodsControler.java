@@ -40,7 +40,7 @@ public class GoodsControler extends BaseController {
 
     @RequestMapping(value= DictionaryStaticURLUtil.goodsControler_newGoods,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.goodsControler.newCompany",name = "新增公司",description ="新增公司"
+    //    @Permission(code = "dectionary.goodsControler.newGoods",name = "新增货物",description ="新增货物"
 //            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_newGoods)
     public String newGoods(GoodsEntity goodsEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
@@ -69,8 +69,8 @@ public class GoodsControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_updateGoods,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.goodsControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_newGoods)
+    //    @Permission(code = "dectionary.goodsControler.updateGoods",name = "更新货物",description ="更新货物"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_updateGoods)
     public String updateGoods(GoodsEntity goodsEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -99,6 +99,8 @@ public class GoodsControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_getGoods+"/{goodsId}",
             method= RequestMethod.GET)
+    //    @Permission(code = "dectionary.goodsControler.getGoods",name = "获取单个货物",description ="获取单个货物"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_getGoods)
     public String getGoods(@PathVariable Integer goodsId) throws Exception {
         try {
 
@@ -125,8 +127,8 @@ public class GoodsControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_goodsPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.goodsControler.newCompany",name = "新增公司",description ="新增公司"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_newGoods)
+    //    @Permission(code = "dectionary.goodsControler.goodsPage",name = "搜索货物",description ="搜索货物"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_goodsPage)
     public String goodsPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -181,8 +183,8 @@ public class GoodsControler extends BaseController {
 
     @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "user.userController.batchBan",name = "批量禁用/恢复",description ="批量禁用/恢复用户"
-    //    ,url=CommonStaticWord.userServices + UserStaticURLUtil.userController + UserStaticURLUtil.userController_batchBan)
+    //@Permission(code = "dectionary.goodsControler.batchBan",name = "批量禁用/恢复货物",description ="批量禁用/恢复货物"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + UserStaticURLUtil.goodsControler_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
