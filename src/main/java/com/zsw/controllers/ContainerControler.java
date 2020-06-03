@@ -43,7 +43,7 @@ public class ContainerControler  extends BaseController {
     public String newContainer(ContainerEntity containerEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.containerService.checkContainerExist(containerEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -71,7 +71,7 @@ public class ContainerControler  extends BaseController {
     public String updateContainer(ContainerEntity containerEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.containerService.checkContainerExist(containerEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -102,7 +102,7 @@ public class ContainerControler  extends BaseController {
         try {
 
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             ContainerEntity containerEntity = new ContainerEntity();
             containerEntity.setId(containerId);
@@ -129,7 +129,7 @@ public class ContainerControler  extends BaseController {
     public String containerPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             Map<String,Object> paramMap = new HashMap<String, Object>();
 
             String status = request.getParameter("status");
@@ -185,7 +185,7 @@ public class ContainerControler  extends BaseController {
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             String ids = params.get("ids");
             String type = params.get("type");
             if(ids == null || type == null){

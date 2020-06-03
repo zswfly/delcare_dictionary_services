@@ -45,7 +45,7 @@ public class CostControler extends BaseController {
     public String newCost(CostEntity costEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.costService.checkCostExist(costEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -74,7 +74,7 @@ public class CostControler extends BaseController {
     public String updateCost(CostEntity costEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.costService.checkCostExist(costEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -106,7 +106,7 @@ public class CostControler extends BaseController {
         try {
 
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             CostEntity costEntity = new CostEntity();
             costEntity.setId(costId);
@@ -133,7 +133,7 @@ public class CostControler extends BaseController {
     public String costPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             Map<String,Object> paramMap = new HashMap<String, Object>();
 
             String status = request.getParameter("status");
@@ -189,7 +189,7 @@ public class CostControler extends BaseController {
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             String ids = params.get("ids");
             String type = params.get("type");
             if(ids == null || type == null){

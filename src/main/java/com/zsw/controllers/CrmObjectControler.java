@@ -45,7 +45,7 @@ public class CrmObjectControler extends BaseController {
     public String newCrmObject(CrmObjectEntity crmObjectEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.crmObjectService.checkCrmObjectExist(crmObjectEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -74,7 +74,7 @@ public class CrmObjectControler extends BaseController {
     public String updateCrmObject(CrmObjectEntity crmObjectEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             String check =this.crmObjectService.checkCrmObjectExist(crmObjectEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
@@ -106,7 +106,7 @@ public class CrmObjectControler extends BaseController {
         try {
 
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
 
             CrmObjectEntity crmObjectEntity = new CrmObjectEntity();
             crmObjectEntity.setId(crmObjectId);
@@ -133,7 +133,7 @@ public class CrmObjectControler extends BaseController {
     public String crmObjectPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             Map<String,Object> paramMap = new HashMap<String, Object>();
 
             String status = request.getParameter("status");
@@ -189,7 +189,7 @@ public class CrmObjectControler extends BaseController {
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
-            Gson gson = new Gson();
+            Gson gson = CommonUtils.getGson();
             String ids = params.get("ids");
             String type = params.get("type");
             if(ids == null || type == null){
