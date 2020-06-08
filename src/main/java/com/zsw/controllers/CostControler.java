@@ -113,7 +113,7 @@ public class CostControler extends BaseController {
             costEntity = this.costService.getCost(costEntity);
             if(costEntity == null){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
-                responseJson.setMessage("该id奋勇类型");
+                responseJson.setMessage("该id费用类型");
             }else{
                 responseJson.setCode(ResponseCode.Code_200);
                 responseJson.setData(costEntity);
