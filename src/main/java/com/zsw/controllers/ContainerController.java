@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.zsw.controller.BaseController;
 import com.zsw.entitys.ContainerEntity;
 import com.zsw.entitys.common.ResponseJson;
-import com.zsw.entitys.user.CompanyDto;
 import com.zsw.services.IContainerService;
 import com.zsw.utils.*;
 import org.apache.commons.lang.math.NumberUtils;
@@ -25,10 +24,10 @@ import java.util.Map;
  * Created by zhangshaowei on 2020/5/31.
  */
 @RestController
-@RequestMapping(DictionaryStaticURLUtil.containerControler)
-public class ContainerControler  extends BaseController {
+@RequestMapping(DictionaryStaticURLUtil.containerController)
+public class ContainerController extends BaseController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ContainerControler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ContainerController.class);
 
     @Autowired
     IContainerService containerService;
@@ -36,10 +35,10 @@ public class ContainerControler  extends BaseController {
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping(value= DictionaryStaticURLUtil.containerControler_newContainer,
+    @RequestMapping(value= DictionaryStaticURLUtil.containerController_newContainer,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.containerControler.newContainer",name = "新增集装箱",description ="新增集装箱"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_newContainer)
+    //    @Permission(code = "dectionary.containerController.newContainer",name = "新增集装箱",description ="新增集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerController + DictionaryStaticURLUtil.containerController_newContainer)
     public String newContainer(ContainerEntity containerEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -64,10 +63,10 @@ public class ContainerControler  extends BaseController {
     }
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.containerControler_updateContainer,
+    @RequestMapping(value=DictionaryStaticURLUtil.containerController_updateContainer,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.containerControler.updateContainer",name = "更新集装箱",description ="更新集装箱"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_updateContainer)
+    //    @Permission(code = "dectionary.containerController.updateContainer",name = "更新集装箱",description ="更新集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerController + DictionaryStaticURLUtil.containerController_updateContainer)
     public String updateContainer(ContainerEntity containerEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -94,10 +93,10 @@ public class ContainerControler  extends BaseController {
 
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.containerControler_getContainer+"/{containerId}",
+    @RequestMapping(value=DictionaryStaticURLUtil.containerController_getContainer+"/{containerId}",
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.containerControler.getContainer",name = "获取单个集装箱",description ="获取单个集装箱"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_getContainer)
+    //    @Permission(code = "dectionary.containerController.getContainer",name = "获取单个集装箱",description ="获取单个集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerController + DictionaryStaticURLUtil.containerController_getContainer)
     public String getContainer(@PathVariable Integer containerId) throws Exception {
         try {
 
@@ -122,10 +121,10 @@ public class ContainerControler  extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.containerControler_containerPage,
+    @RequestMapping(value=DictionaryStaticURLUtil.containerController_containerPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.containerControler.containerPage",name = "搜索集装箱",description ="搜索集装箱"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + DictionaryStaticURLUtil.containerControler_containerPage)
+    //    @Permission(code = "dectionary.containerController.containerPage",name = "搜索集装箱",description ="搜索集装箱"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerController + DictionaryStaticURLUtil.containerController_containerPage)
     public String containerPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -178,10 +177,10 @@ public class ContainerControler  extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.containerControler_batchBan,
+    @RequestMapping(value=DictionaryStaticURLUtil.containerController_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "dectionary.containerControler.batchBan",name = "批量禁用/恢复集装箱",description ="批量禁用/恢复集装箱"
-    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerControler + UserStaticURLUtil.containerControler_batchBan)
+    //@Permission(code = "dectionary.containerController.batchBan",name = "批量禁用/恢复集装箱",description ="批量禁用/恢复集装箱"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.containerController + UserStaticURLUtil.containerController_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();

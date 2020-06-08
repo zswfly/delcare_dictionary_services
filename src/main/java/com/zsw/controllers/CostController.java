@@ -2,9 +2,9 @@ package com.zsw.controllers;
 
 import com.google.gson.Gson;
 import com.zsw.controller.BaseController;
-import com.zsw.entitys.GoodsEntity;
+import com.zsw.entitys.CostEntity;
 import com.zsw.entitys.common.ResponseJson;
-import com.zsw.services.IGoodsService;
+import com.zsw.services.ICostService;
 import com.zsw.utils.CommonStaticWord;
 import com.zsw.utils.CommonUtils;
 import com.zsw.utils.DictionaryStaticURLUtil;
@@ -27,34 +27,34 @@ import java.util.Map;
  * Created by zhangshaowei on 2020/5/31.
  */
 @RestController
-@RequestMapping(DictionaryStaticURLUtil.goodsControler)
-public class GoodsControler extends BaseController {
+@RequestMapping(DictionaryStaticURLUtil.costController)
+public class CostController extends BaseController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GoodsControler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CostController.class);
 
     @Autowired
-    IGoodsService goodsService;
+    ICostService costService;
 
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping(value= DictionaryStaticURLUtil.goodsControler_newGoods,
+    @RequestMapping(value= DictionaryStaticURLUtil.costController_newCost,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.goodsControler.newGoods",name = "新增货物",description ="新增货物"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_newGoods)
-    public String newGoods(GoodsEntity goodsEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
+    //    @Permission(code = "dectionary.costController.newCost",name = "新增费用",description ="新增费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costController + DictionaryStaticURLUtil.costController_newCost)
+    public String newCost(CostEntity costEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = CommonUtils.getGson();
 
-            String check =this.goodsService.checkGoodsExist(goodsEntity);
+            String check =this.costService.checkCostExist(costEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
                 responseJson.setMessage(check);
             }
 
 
-            this.goodsService.newGoods(goodsEntity,currentUserId);
+            this.costService.newCost(costEntity,currentUserId);
 
             responseJson.setCode(ResponseCode.Code_200);
             responseJson.setMessage("新增成功");
@@ -67,22 +67,23 @@ public class GoodsControler extends BaseController {
     }
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_updateGoods,
+    @RequestMapping(value=DictionaryStaticURLUtil.costController_updateCost,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.goodsControler.updateGoods",name = "更新货物",description ="更新货物"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_updateGoods)
-    public String updateGoods(GoodsEntity goodsEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
+    //    @Permission(code = "dectionary.costController.updateCost",name = "更新费用",description ="更新费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costController + DictionaryStaticURLUtil.costController_updateCost)
+    public String updateCost(CostEntity costEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = CommonUtils.getGson();
 
-            String check =this.goodsService.checkGoodsExist(goodsEntity);
+            String check =this.costService.checkCostExist(costEntity);
             if(StringUtils.isNotBlank(check) && StringUtils.isNotEmpty(check)){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
                 responseJson.setMessage(check);
             }
 
-            this.goodsService.updateGoods(goodsEntity,currentUserId);
+
+            this.costService.updateCost(costEntity,currentUserId);
 
             responseJson.setCode(ResponseCode.Code_200);
             responseJson.setMessage("更新成功");
@@ -97,25 +98,25 @@ public class GoodsControler extends BaseController {
 
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_getGoods+"/{goodsId}",
+    @RequestMapping(value=DictionaryStaticURLUtil.costController_getCost+"/{costId}",
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.goodsControler.getGoods",name = "获取单个货物",description ="获取单个货物"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_getGoods)
-    public String getGoods(@PathVariable Integer goodsId) throws Exception {
+    //    @Permission(code = "dectionary.costController.getCost",name = "获取单个费用",description ="获取单个费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costController + DictionaryStaticURLUtil.costController_getCost)
+    public String getCost(@PathVariable Integer costId) throws Exception {
         try {
 
             ResponseJson responseJson = new ResponseJson();
             Gson gson = CommonUtils.getGson();
 
-            GoodsEntity goodsEntity = new GoodsEntity();
-            goodsEntity.setId(goodsId);
-            goodsEntity = this.goodsService.getGoods(goodsEntity);
-            if(goodsEntity == null){
+            CostEntity costEntity = new CostEntity();
+            costEntity.setId(costId);
+            costEntity = this.costService.getCost(costEntity);
+            if(costEntity == null){
                 responseJson.setCode(ResponseCode.Code_Bussiness_Error);
-                responseJson.setMessage("该id没货物类型");
+                responseJson.setMessage("该id费用类型");
             }else{
                 responseJson.setCode(ResponseCode.Code_200);
-                responseJson.setData(goodsEntity);
+                responseJson.setData(costEntity);
             }
 
             return gson.toJson(responseJson);
@@ -125,11 +126,11 @@ public class GoodsControler extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_goodsPage,
+    @RequestMapping(value=DictionaryStaticURLUtil.costController_costPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.goodsControler.goodsPage",name = "搜索货物",description ="搜索货物"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + DictionaryStaticURLUtil.goodsControler_goodsPage)
-    public String goodsPage(NativeWebRequest request) throws Exception {
+    //    @Permission(code = "dectionary.costController.costPage",name = "搜索费用",description ="搜索费用"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costController + DictionaryStaticURLUtil.costController_costPage)
+    public String costPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
             Gson gson = CommonUtils.getGson();
@@ -139,9 +140,9 @@ public class GoodsControler extends BaseController {
             if(status !=null && StringUtils.isNotEmpty(status)) {
                 paramMap.put("status", Integer.valueOf(NumberUtils.toInt(status, CommonStaticWord.Normal_Status_0)));
             }
-            String goodsName = request.getParameter("goodsName");
-            if(goodsName !=null && StringUtils.isNotEmpty(goodsName)) {
-                paramMap.put("goodsName", goodsName);
+            String costName = request.getParameter("costName");
+            if(costName !=null && StringUtils.isNotEmpty(costName)) {
+                paramMap.put("costName", costName);
             }
 
             String mnemonicCode = request.getParameter("mnemonicCode");
@@ -166,8 +167,8 @@ public class GoodsControler extends BaseController {
             paramMap.put("pageSize", pageSize);
 
             Map<String,Object> data = new HashMap<>();
-            List<GoodsEntity> items = this.goodsService.listGoodsEntity(paramMap);
-            Integer total = this.goodsService.listGoodsEntityCount(paramMap);
+            List<CostEntity> items = this.costService.listCostEntity(paramMap);
+            Integer total = this.costService.listCostEntityCount(paramMap);
             data.put("items",items);
             data.put("total",total==null?0:total);
             responseJson.setData(data);
@@ -181,10 +182,10 @@ public class GoodsControler extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.goodsControler_batchBan,
+    @RequestMapping(value=DictionaryStaticURLUtil.costController_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "dectionary.goodsControler.batchBan",name = "批量禁用/恢复货物",description ="批量禁用/恢复货物"
-    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.goodsControler + UserStaticURLUtil.goodsControler_batchBan)
+    //@Permission(code = "dectionary.costController.batchBan",name = "批量禁用/恢复费用",description ="批量禁用/恢复费用"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.costController + UserStaticURLUtil.costController_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -197,7 +198,7 @@ public class GoodsControler extends BaseController {
                 return gson.toJson(responseJson);
             }else{
                 List<Integer> list = Arrays.asList(gson.fromJson(ids, Integer[].class));
-                this.goodsService.batchBan(list,type,currentUserId);
+                this.costService.batchBan(list,type,currentUserId);
                 responseJson.setCode(ResponseCode.Code_200);
                 responseJson.setMessage("更新成功");
                 return gson.toJson(responseJson);
@@ -208,7 +209,6 @@ public class GoodsControler extends BaseController {
             return CommonUtils.ErrorResposeJson(null);
         }
     }
-
 
 
 

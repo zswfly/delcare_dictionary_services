@@ -27,10 +27,10 @@ import java.util.Map;
  * Created by zhangshaowei on 2020/5/31.
  */
 @RestController
-@RequestMapping(DictionaryStaticURLUtil.crmObjectControler)
-public class CrmObjectControler extends BaseController {
+@RequestMapping(DictionaryStaticURLUtil.crmObjectController)
+public class CrmObjectController extends BaseController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CrmObjectControler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CrmObjectController.class);
 
     @Autowired
     ICrmObjectService crmObjectService;
@@ -38,10 +38,10 @@ public class CrmObjectControler extends BaseController {
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping(value= DictionaryStaticURLUtil.crmObjectControler_newCrmObject,
+    @RequestMapping(value= DictionaryStaticURLUtil.crmObjectController_newCrmObject,
             method= RequestMethod.POST)
-    //    @Permission(code = "dectionary.crmObjectControler.newCrmObject",name = "新增CRM对象",description ="新增CRM对象"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_newCrmObject)
+    //    @Permission(code = "dectionary.crmObjectController.newCrmObject",name = "新增CRM对象",description ="新增CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectController + DictionaryStaticURLUtil.crmObjectController_newCrmObject)
     public String newCrmObject(CrmObjectEntity crmObjectEntity, @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -67,10 +67,10 @@ public class CrmObjectControler extends BaseController {
     }
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_updateCrmObject,
+    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectController_updateCrmObject,
             method= RequestMethod.PUT)
-    //    @Permission(code = "dectionary.crmObjectControler.updateCrmObject",name = "更新CRM对象",description ="更新CRM对象"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_updateCrmObject)
+    //    @Permission(code = "dectionary.crmObjectController.updateCrmObject",name = "更新CRM对象",description ="更新CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectController + DictionaryStaticURLUtil.crmObjectController_updateCrmObject)
     public String updateCrmObject(CrmObjectEntity crmObjectEntity,@RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -98,10 +98,10 @@ public class CrmObjectControler extends BaseController {
 
 
 
-    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_getCrmObject+"/{crmObjectId}",
+    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectController_getCrmObject+"/{crmObjectId}",
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.crmObjectControler.getCrmObject",name = "获取单个CRM对象",description ="获取单个CRM对象"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_getCrmObject)
+    //    @Permission(code = "dectionary.crmObjectController.getCrmObject",name = "获取单个CRM对象",description ="获取单个CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectController + DictionaryStaticURLUtil.crmObjectController_getCrmObject)
     public String getCrmObject(@PathVariable Integer crmObjectId) throws Exception {
         try {
 
@@ -126,10 +126,10 @@ public class CrmObjectControler extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_crmObjectPage,
+    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectController_crmObjectPage,
             method= RequestMethod.GET)
-    //    @Permission(code = "dectionary.crmObjectControler.crmObjectPage",name = "搜索CRM对象",description ="搜索CRM对象"
-//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + DictionaryStaticURLUtil.crmObjectControler_crmObjectPage)
+    //    @Permission(code = "dectionary.crmObjectController.crmObjectPage",name = "搜索CRM对象",description ="搜索CRM对象"
+//            ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectController + DictionaryStaticURLUtil.crmObjectController_crmObjectPage)
     public String crmObjectPage(NativeWebRequest request) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
@@ -182,10 +182,10 @@ public class CrmObjectControler extends BaseController {
         }
     }
 
-    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectControler_batchBan,
+    @RequestMapping(value=DictionaryStaticURLUtil.crmObjectController_batchBan,
             method= RequestMethod.PUT)
-    //@Permission(code = "dectionary.crmObjectControler.batchBan",name = "批量禁用/恢复CRM对象",description ="批量禁用/恢复CRM对象"
-    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectControler + UserStaticURLUtil.crmObjectControler_batchBan)
+    //@Permission(code = "dectionary.crmObjectController.batchBan",name = "批量禁用/恢复CRM对象",description ="批量禁用/恢复CRM对象"
+    //    ,url=CommonStaticWord.dictionaryServices + DictionaryStaticURLUtil.crmObjectController + UserStaticURLUtil.crmObjectController_batchBan)
     public String batchBan( @RequestParam Map<String, String> params , @RequestHeader("userId") Integer currentUserId) throws Exception {
         try {
             ResponseJson responseJson = new ResponseJson();
