@@ -16,9 +16,9 @@
 
     SELECT g.*
     FROM goods g
-
-    <if test="paramMap.containerName != null and paramMap.containerName != ''">
-      AND g.`name` LIKE '%${paramMap.containerName}%'
+    WHERE  1=1
+    <if test="paramMap.goodsName != null and paramMap.goodsName != ''">
+      AND g.`name` LIKE '%${paramMap.goodsName}%'
     </if>
     <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
       AND g.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
@@ -46,8 +46,9 @@
     SELECT
     COUNT(DISTINCT g.id)
     FROM goods g
-    <if test="paramMap.containerName != null and paramMap.containerName != ''">
-      AND g.`name` LIKE '%${paramMap.containerName}%'
+    WHERE  1=1
+    <if test="paramMap.goodsName != null and paramMap.goodsName != ''">
+      AND g.`name` LIKE '%${paramMap.goodsName}%'
     </if>
     <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
       AND g.mnemonic_code LIKE '${paramMap.mnemonicCode}%'

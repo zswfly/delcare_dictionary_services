@@ -140,7 +140,7 @@ public class CostController extends BaseController {
             if(status !=null && StringUtils.isNotEmpty(status)) {
                 paramMap.put("status", Integer.valueOf(NumberUtils.toInt(status, CommonStaticWord.Normal_Status_0)));
             }
-            String costName = request.getParameter("costName");
+            String costName = request.getParameter("name");
             if(costName !=null && StringUtils.isNotEmpty(costName)) {
                 paramMap.put("costName", costName);
             }

@@ -140,7 +140,7 @@ public class CrmObjectController extends BaseController {
             if(status !=null && StringUtils.isNotEmpty(status)) {
                 paramMap.put("status", Integer.valueOf(NumberUtils.toInt(status, CommonStaticWord.Normal_Status_0)));
             }
-            String crmObjectName = request.getParameter("crmObjectName");
+            String crmObjectName = request.getParameter("name");
             if(crmObjectName !=null && StringUtils.isNotEmpty(crmObjectName)) {
                 paramMap.put("crmObjectName", crmObjectName);
             }

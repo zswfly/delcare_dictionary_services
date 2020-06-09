@@ -17,7 +17,7 @@
 
     SELECT c.*
     FROM container c
-
+    WHERE  1=1
     <if test="paramMap.containerName != null and paramMap.containerName != ''">
       AND c.`name` LIKE '%${paramMap.containerName}%'
     </if>
@@ -47,6 +47,7 @@
     SELECT
     COUNT(DISTINCT c.id)
     FROM container c
+    WHERE  1=1
     <if test="paramMap.containerName != null and paramMap.containerName != ''">
       AND c.`name` LIKE '%${paramMap.containerName}%'
     </if>

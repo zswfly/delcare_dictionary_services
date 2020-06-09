@@ -15,9 +15,9 @@
 
     SELECT c.*
     FROM cost c
-
-    <if test="paramMap.containerName != null and paramMap.containerName != ''">
-      AND c.`name` LIKE '%${paramMap.containerName}%'
+    WHERE  1=1
+    <if test="paramMap.costName != null and paramMap.costName != ''">
+      AND c.`name` LIKE '%${paramMap.costName}%'
     </if>
     <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
       AND c.mnemonic_code LIKE '${paramMap.mnemonicCode}%'
@@ -45,8 +45,9 @@
     SELECT
     COUNT(DISTINCT c.id)
     FROM cost c
-    <if test="paramMap.containerName != null and paramMap.containerName != ''">
-      AND c.`name` LIKE '%${paramMap.containerName}%'
+    WHERE  1=1
+    <if test="paramMap.costName != null and paramMap.costName != ''">
+      AND c.`name` LIKE '%${paramMap.costName}%'
     </if>
     <if test="paramMap.mnemonicCode != null and paramMap.mnemonicCode != ''">
       AND c.mnemonic_code LIKE '${paramMap.mnemonicCode}%'

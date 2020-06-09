@@ -135,7 +135,7 @@ public class ContainerController extends BaseController {
             if(status !=null && StringUtils.isNotEmpty(status)) {
                 paramMap.put("status", Integer.valueOf(NumberUtils.toInt(status, CommonStaticWord.Normal_Status_0)));
             }
-            String containerName = request.getParameter("containerName");
+            String containerName = request.getParameter("name");
             if(containerName !=null && StringUtils.isNotEmpty(containerName)) {
                 paramMap.put("containerName", containerName);
             }

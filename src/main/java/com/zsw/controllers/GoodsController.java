@@ -139,7 +139,7 @@ public class GoodsController extends BaseController {
             if(status !=null && StringUtils.isNotEmpty(status)) {
                 paramMap.put("status", Integer.valueOf(NumberUtils.toInt(status, CommonStaticWord.Normal_Status_0)));
             }
-            String goodsName = request.getParameter("goodsName");
+            String goodsName = request.getParameter("name");
             if(goodsName !=null && StringUtils.isNotEmpty(goodsName)) {
                 paramMap.put("goodsName", goodsName);
             }
