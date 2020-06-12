@@ -9,13 +9,14 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="current_session_context_class">thread</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping class="com.zsw.entitys.ContainerEntity"/>
+      <mapping class="com.zsw.entitys.ContainerEntity"/>
     <mapping class="com.zsw.entitys.CostEntity"/>
     <mapping class="com.zsw.entitys.CrmObjectEntity"/>
     <mapping class="com.zsw.entitys.GoodsEntity"/>
+      <mapping class="com.zsw.entitys.FileEntity"/>
 
 
-    <!-- DB schema will be updated if needed -->
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zsw.daos.FileMapper" >
+  <resultMap id="BaseResultMap" type="com.zsw.entitys.FileEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="file_code" property="fileCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="listFileEntity" resultMap="BaseResultMap">
+
+    SELECT f.*
+    FROM file f
+    WHERE  1=1
+    <if test="paramMap.fileName != null and paramMap.fileName != ''">
+      AND f.`name` LIKE '%${paramMap.fileName}%'
+    </if>
+    <if test="paramMap.beginCreateTime !=null">
+      AND f.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND f.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+
+    GROUP BY f.id
+
+    <if test="paramMap.start !=null and paramMap.start >= 0
+         and paramMap.pageSize !=null and paramMap.pageSize > 0">
+      LIMIT ${paramMap.start} , ${paramMap.pageSize}
+    </if>
+  </select>
+
+  <select id="listFileEntityCount" resultType="Integer">
+
+    SELECT
+    COUNT(DISTINCT f.id)
+    FROM file f
+    WHERE  1=1
+    <if test="paramMap.fileName != null and paramMap.fileName != ''">
+      AND f.`name` LIKE '%${paramMap.fileName}%'
+    </if>
+
+    <if test="paramMap.beginCreateTime !=null">
+      AND f.create_time >= Date(#{paramMap.beginCreateTime})
+    </if>
+    <if test="paramMap.endCreateTime !=null">
+      <![CDATA[ AND f.create_time <=  Date(#{paramMap.endCreateTime}) ]]>
+    </if>
+  </select>
+
+  <delete id="deleteFileByIds">
+    DELETE FROM file f
+    WHERE f.`id` IN
+    <foreach collection="ids" open="(" separator="," close=")" item="id">
+      #{id}
+    </foreach>
+  </delete>
+
+  
+</mapper>
